@@ -1,6 +1,6 @@
 = Redmine Version Priorities
 
-A Redmine plugin to prioritize versions to help users make a decision on which issues need to be worked on next.
+A Redmine plugin to pritorize versions in order to help users make a decision on which issues need to be worked on next.
 
 == Features
 

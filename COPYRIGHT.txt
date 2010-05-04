@@ -1,5 +1,5 @@
-Redmine Version Priorities is a plugin that A Redmine plugin that allows
-versions to be prioritized.
+Redmine Version Priorities is a plugin that that allows versions to
+be prioritized.
 
 Copyright (C) 2010 Eric Davis
 
