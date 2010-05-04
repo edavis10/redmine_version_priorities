@@ -24,7 +24,61 @@ class ViewVersionPrioritiesTest < ActionController::IntegrationTest
     assert_equal "/version_priorities", current_url
   end
 
-  should "allow all logged in users to see the priorities"
+  should "allow all logged in users to see the unprioritized versions" do
+    @user = login_as_user
+    @project1 = Project.generate!
+    @project2 = Project.generate!
+    @version1 = Version.generate!(:project => @project1)
+    @version2 = Version.generate!(:project => @project2)
+    @role = Role.generate!(:permissions => [:view_issues])
+    Member.generate!(:principal => @user, :roles => [@role], :project => @project1)
+    Member.generate!(:principal => @user, :roles => [@role], :project => @project2)
+    
+    visit "/version_priorities"
+
+    assert_select "#unprioritized-versions" do
+      assert_select "li" do
+        assert_select "span", :text => '0', :count => 0 # priority
+        assert_select "a", :text => /#{@version1.name}/
+        assert_select "span", :text => /#{@version1.description}/
+      end
+
+      assert_select "li" do
+        assert_select "span", :text => '0', :count => 0 # priority
+        assert_select "a", :text => /#{@version2.name}/
+        assert_select "span", :text => /#{@version2.description}/
+      end
+    end
+    
+  end
+
+  should "allow all logged in users to see the prioritized versions" do
+    @user = login_as_user
+    @project1 = Project.generate!
+    @project2 = Project.generate!
+    @version1 = Version.generate!(:project => @project1, :priority => 1)
+    @version2 = Version.generate!(:project => @project2, :priority => 2)
+    @role = Role.generate!(:permissions => [:view_issues])
+    Member.generate!(:principal => @user, :roles => [@role], :project => @project1)
+    Member.generate!(:principal => @user, :roles => [@role], :project => @project2)
+    
+    visit "/version_priorities"
+
+    assert_select "#prioritized-versions" do
+      assert_select "li" do
+        assert_select "span", :text => '1'
+        assert_select "a", :text => /#{@version1.name}/
+        assert_select "span", :text => /#{@version1.description}/
+      end
+
+      assert_select "li" do
+        assert_select "span", :text => '2'
+        assert_select "a", :text => /#{@version2.name}/
+        assert_select "span", :text => /#{@version2.description}/
+      end
+    end
+    
+  end
 
   def login_as_user
     user = User.generate!(:login => 'existing', :password => 'existing', :password_confirmation => 'existing', :admin => false)

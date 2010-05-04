@@ -1,0 +1,7 @@
+<li id="version-<%= h version.id -%>">
+  <span><%= h(version.priority) unless version.priority.blank? || version.priority == 0 %></span>
+  <span><%= link_to_version(version) %></span>
+  <span><%= h(version.description) %></span>
+  <span><%= format_date(version.effective_date) %></span>
+  <%= progress_bar([version.closed_pourcent, version.completed_pourcent], :legend => ('%0.0f%' % version.completed_pourcent)) %>
+</li>

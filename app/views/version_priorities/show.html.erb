@@ -1,1 +1,21 @@
 <%= content_tag(:h1, l(:version_priorities_title)) %>
+
+<div id="prioritized-versions">
+  <ul>
+    <% if @prioritized_versions.present? %>
+      <%= render :partial => 'version', :collection => @prioritized_versions %>
+    <% else %>
+      <li class="empty-list"><%= l(:label_no_data) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="unprioritized-versions">
+  <ul>
+    <% if @unprioritized_versions.present? %>
+      <%= render :partial => 'version', :collection => @unprioritized_versions %>
+    <% else %>
+      <li class="empty-list"><%= l(:label_no_data) %></li>
+    <% end %>
+  </ul>
+</div>
