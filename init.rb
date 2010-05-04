@@ -8,6 +8,17 @@ Redmine::Plugin.register :redmine_version_priorities do
   version '0.1.'
 
   requires_redmine :version_or_higher => '0.9.0'
+
+  menu(:top_menu,
+       :version_priorities,
+       {:controller => 'version_priorities', :action => 'show'},
+       :caption => :version_priorities_title,
+       :if => Proc.new {
+         User.current.logged?
+       })
+
+  permission(:view_version_priorities, {:version_priorities => [:show]}, :public => true)
+
 end
 
 require 'dispatcher'
