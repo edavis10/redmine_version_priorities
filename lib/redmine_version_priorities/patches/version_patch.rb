@@ -9,6 +9,9 @@ module RedmineVersionPriorities
           unloadable
           acts_as_list :column => 'priority'
 
+          named_scope :prioritized, :conditions => ["priority != 0 AND priority IS NOT NULL"], :order => 'priority ASC'
+          named_scope :unprioritized, :conditions => ["priority = 0 OR priority IS NULL"]
+
           private
 
           # Override acts_as_list to allow nil priorities
@@ -24,7 +27,7 @@ module RedmineVersionPriorities
           ordered_ids = order.collect(&:to_i)
           
           # Removed versions
-          Version.visible.all(:conditions => ["priority != 0 AND priority IS NOT NULL"], :order => 'priority ASC').each do |version|
+          Version.visible.prioritized.each do |version|
             unless ordered_ids.include?(version.id)
               version.remove_from_list
             end
