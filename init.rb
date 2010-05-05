@@ -24,6 +24,14 @@ end
 require 'dispatcher'
 Dispatcher.to_prepare :redmine_version_priorities do
 
+  require_dependency 'issue'
+  Issue.send(:include, RedmineVersionPriorities::Patches::IssuePatch)
+
+  require_dependency 'query'
+  unless Query.included_modules.include?(RedmineVersionPriorities::Patches::QueryPatch)
+    Query.send(:include, RedmineVersionPriorities::Patches::QueryPatch)
+  end
+
   require_dependency 'version'
   Version.send(:include, RedmineVersionPriorities::Patches::VersionPatch)
 end

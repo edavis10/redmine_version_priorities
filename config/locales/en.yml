@@ -2,3 +2,4 @@ en:
   version_priorities_title: "Version Priorities"
   version_priorities_text_prioritized_versions: "Prioritized Versions"
   version_priorities_text_unprioritized_versions: "Unprioritized Versions"
+  field_fixed_version_priority: "Version priority"
