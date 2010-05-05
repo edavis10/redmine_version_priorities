@@ -1,5 +1,7 @@
 <%= content_tag(:h1, l(:version_priorities_title), :class => 'version-priority-title') %>
 
+<div class="flash error" style="display:none"></div>
+
 <div id="prioritized-versions" class="splitcontentleft">
   <%= content_tag(:h2, l(:version_priorities_text_prioritized_versions)) %>
   <ol>
@@ -26,6 +28,7 @@
   <%= stylesheet_link_tag "redmine_version_priorities.css", :plugin => "redmine_version_priorities", :media => 'all' %>
   <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => 'redmine_version_priorities' %>
   <%= javascript_include_tag 'jquery-ui-1.8.1.custom.min.js', :plugin => 'redmine_version_priorities' %>
+  <%= javascript_include_tag 'jquery.ajax_queue.js', :plugin => 'redmine_version_priorities' %>
   <%= javascript_tag("jQuery.noConflict();") %>
   <%= javascript_include_tag 'redmine_version_priorities.js', :plugin => 'redmine_version_priorities' %>
   <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
