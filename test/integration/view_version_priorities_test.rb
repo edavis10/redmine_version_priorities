@@ -38,13 +38,11 @@ class ViewVersionPrioritiesTest < ActionController::IntegrationTest
 
     assert_select "#unprioritized-versions" do
       assert_select "li" do
-        assert_select "span", :text => '0', :count => 0 # priority
         assert_select "a", :text => /#{@version1.name}/
         assert_select "span", :text => /#{@version1.description}/
       end
 
       assert_select "li" do
-        assert_select "span", :text => '0', :count => 0 # priority
         assert_select "a", :text => /#{@version2.name}/
         assert_select "span", :text => /#{@version2.description}/
       end
@@ -66,13 +64,11 @@ class ViewVersionPrioritiesTest < ActionController::IntegrationTest
 
     assert_select "#prioritized-versions" do
       assert_select "li" do
-        assert_select "span", :text => '1'
         assert_select "a", :text => /#{@version1.name}/
         assert_select "span", :text => /#{@version1.description}/
       end
 
       assert_select "li" do
-        assert_select "span", :text => '2'
         assert_select "a", :text => /#{@version2.name}/
         assert_select "span", :text => /#{@version2.description}/
       end

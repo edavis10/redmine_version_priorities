@@ -1,16 +1,18 @@
-<%= content_tag(:h1, l(:version_priorities_title)) %>
+<%= content_tag(:h1, l(:version_priorities_title), :class => 'version-priority-title') %>
 
-<div id="prioritized-versions">
-  <ul>
+<div id="prioritized-versions" class="splitcontentleft">
+  <%= content_tag(:h2, l(:version_priorities_text_prioritized_versions)) %>
+  <ol>
     <% if @prioritized_versions.present? %>
       <%= render :partial => 'version', :collection => @prioritized_versions %>
     <% else %>
       <li class="empty-list"><%= l(:label_no_data) %></li>
     <% end %>
-  </ul>
+  </ol>
 </div>
 
-<div id="unprioritized-versions">
+<div id="unprioritized-versions" class="splitcontentright">
+  <%= content_tag(:h2, l(:version_priorities_text_unprioritized_versions)) %>
   <ul>
     <% if @unprioritized_versions.present? %>
       <%= render :partial => 'version', :collection => @unprioritized_versions %>
@@ -19,3 +21,7 @@
     <% end %>
   </ul>
 </div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag "redmine_version_priorities.css", :plugin => "redmine_version_priorities", :media => 'all' %>
+<% end %>

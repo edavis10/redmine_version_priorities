@@ -1,7 +1,8 @@
-<li id="version-<%= h version.id -%>">
-  <span><%= h(version.priority) unless version.priority.blank? || version.priority == 0 %></span>
+<li id="version-<%= h version.id -%>" class="version">
   <span><%= link_to_version(version) %></span>
   <span><%= h(version.description) %></span>
-  <span><%= format_date(version.effective_date) %></span>
-  <%= progress_bar([version.closed_pourcent, version.completed_pourcent], :legend => ('%0.0f%' % version.completed_pourcent)) %>
+  <span class="due_date"><%= format_date(version.effective_date) %></span>
+  <span>
+    <%= progress_bar([version.closed_pourcent, version.completed_pourcent], :legend => ('%0.0f%' % version.completed_pourcent)) %>
+  </span>
 </li>

@@ -1,0 +1,13 @@
+
+.version {}
+li.version { clear: both;}
+
+#prioritized-versions ol { padding-left: 35px; }
+#unprioritized-versions ul { list-style: none; padding-left: 15px;}
+
+/* item elements */
+li.version span.due_date { font-size: smaller; }
+li.version table.progress { display: inline; position: relative; float: right; }
+li.version p.pourcent { display: inline; position: relative; float: right; }
+
+h1.version-priority-title { margin-bottom: 15px; }
