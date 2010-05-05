@@ -1,6 +1,6 @@
 
 .version {}
-li.version { clear: both;}
+li.version { clear: both; cursor: move;}
 
 #prioritized-versions ol { padding-left: 35px; }
 #unprioritized-versions ul { list-style: none; padding-left: 15px;}
@@ -11,3 +11,6 @@ li.version table.progress { display: inline; position: relative; float: right; }
 li.version p.pourcent { display: inline; position: relative; float: right; }
 
 h1.version-priority-title { margin-bottom: 15px; }
+
+
+.drop-accepted { background-color:#FFFFEE; height: 16px; margin-bottom:5px; border: 1px dashed #000000; }
