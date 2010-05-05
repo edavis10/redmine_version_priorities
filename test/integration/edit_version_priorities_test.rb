@@ -50,6 +50,19 @@ class EditVersionPrioritiesTest < ActionController::IntegrationTest
 
       assert_equal nil, @version2.reload.priority
     end
+
+    should "remove all versions when the list is empty" do
+      @version2.insert_at(1)
+      assert_equal 1, @version2.reload.priority
+      @version1.insert_at(2)
+      assert_equal 2, @version1.reload.priority
+      
+      put "/version_priorities.js"
+      assert_response :success
+
+      assert_equal nil, @version1.reload.priority
+      assert_equal nil, @version2.reload.priority
+    end
   end
   
   def login_as_user

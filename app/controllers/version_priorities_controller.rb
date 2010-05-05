@@ -10,7 +10,7 @@ class VersionPrioritiesController < ApplicationController
   end
 
   def update
-    Version.reprioritize(params[:version]) if params[:version]
+    Version.reprioritize(params[:version])
     
     @prioritized_versions = Version.visible.prioritized
     @unprioritized_versions = Version.visible.unprioritized

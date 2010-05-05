@@ -23,8 +23,8 @@ module RedmineVersionPriorities
 
       module ClassMethods
         def reprioritize(order)
-          return nil unless order.present?
-          ordered_ids = order.collect(&:to_i)
+          ordered_ids = order.collect(&:to_i) if order.present?
+          ordered_ids ||= []
           
           # Removed versions
           Version.visible.prioritized.each do |version|
