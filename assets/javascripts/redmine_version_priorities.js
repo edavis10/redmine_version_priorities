@@ -6,7 +6,12 @@ jQuery(function($) {
     if (window.admin != true) {
       return false;
     }
-    
+
+    attachPrioritizedSortables();
+    attachUnPrioritizedSortables();
+  },
+
+  attachPrioritizedSortables = function() {
     $('#prioritized-versions ol').sortable({
       cancel: 'a',
       connectWith: ["#unprioritized-versions ul"],
@@ -22,7 +27,9 @@ jQuery(function($) {
         saveOrder();
       }
     });
+  },
 
+  attachUnPrioritizedSortables = function() {
     $('#unprioritized-versions ul').sortable({
       cancel: 'a',
       connectWith: ["#prioritized-versions ol"],
@@ -39,7 +46,7 @@ jQuery(function($) {
       data: addAuthenticityToken(data),
       success: function(response) {
         $('#prioritized-versions').html(response);
-        attachSortables();
+        attachPrioritizedSortables();
       },
       error: function(response) {
         $("div.error").html("Error saving lists.  Please refresh the page and try again.").show();
