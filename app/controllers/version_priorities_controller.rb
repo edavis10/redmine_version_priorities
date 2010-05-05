@@ -10,16 +10,7 @@ class VersionPrioritiesController < ApplicationController
   end
 
   def update
-    Version.visible.all(:conditions => ["priority != 0 AND priority IS NOT NULL"], :order => 'priority ASC').each do |version|
-      unless params[:version] && params[:version].include?(version.id.to_s)
-        version.remove_from_list
-      end
-    end
-    
-    params[:version].each_with_index do |version_id, index|
-      version = Version.find_by_id(version_id)
-      version.insert_at( index + 1) if version
-    end if params[:version] && params[:version].present?
+    Version.reprioritize(params[:version]) if params[:version]
     
     @prioritized_versions = Version.visible.all(:conditions => ["priority != 0 AND priority IS NOT NULL"], :order => 'priority ASC')
     @unprioritized_versions = Version.visible.all(:conditions => ["priority = 0 OR priority IS NULL"])

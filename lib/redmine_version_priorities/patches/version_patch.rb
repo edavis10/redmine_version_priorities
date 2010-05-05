@@ -19,6 +19,25 @@ module RedmineVersionPriorities
       end
 
       module ClassMethods
+        def reprioritize(order)
+          return nil unless order.present?
+          ordered_ids = order.collect(&:to_i)
+          
+          # Removed versions
+          Version.visible.all(:conditions => ["priority != 0 AND priority IS NOT NULL"], :order => 'priority ASC').each do |version|
+            unless ordered_ids.include?(version.id)
+              version.remove_from_list
+            end
+          end
+
+          # Sort
+          ordered_ids.each_with_index do |version_id, index|
+            version = Version.find_by_id(version_id)
+            version.insert_at( index + 1) if version
+          end
+
+        end
+        
       end
 
       module InstanceMethods
