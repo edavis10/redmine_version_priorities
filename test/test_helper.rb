@@ -34,4 +34,19 @@ class Test::Unit::TestCase
     end
   end
 
+  def self.should_be_unauthorized(description, &block)
+    context description do
+      should "render the unauthorized template" do
+        instance_eval &block
+        assert_template 'common/403'
+      end
+      
+      should "respond with unauthorized" do
+        instance_eval &block
+        assert_response 403
+      end
+
+    end
+  end
+
 end

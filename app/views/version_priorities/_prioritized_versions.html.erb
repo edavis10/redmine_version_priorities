@@ -1,0 +1,9 @@
+  <%= content_tag(:h2, l(:version_priorities_text_prioritized_versions)) %>
+  <ol>
+    <% if @prioritized_versions.present? %>
+      <%= render :partial => 'version', :collection => @prioritized_versions %>
+    <% else %>
+      <li class="empty-list"><%= l(:label_no_data) %></li>
+    <% end %>
+  </ol>
+

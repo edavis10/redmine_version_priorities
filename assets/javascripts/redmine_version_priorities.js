@@ -35,6 +35,7 @@ jQuery(function($) {
       data: addAuthenticityToken(data),
       success: function(response) {
         $('#prioritized-versions').html(response);
+        attachSortables();
       },
       error: function(response) {
         $("div.error").html("Error saving lists.  Please refresh the page and try again.").show();
