@@ -25,5 +25,6 @@
   <%= javascript_tag("jQuery.noConflict();") %>
   <%= javascript_include_tag 'redmine_version_priorities.js', :plugin => 'redmine_version_priorities' %>
   <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+  <%= javascript_tag "window.admin = true" if User.current.admin?%>
 
 <% end %>

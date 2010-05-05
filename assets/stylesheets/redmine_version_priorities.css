@@ -1,6 +1,7 @@
 
 .version {}
-li.version { clear: both; cursor: move;}
+li.version { clear: both; }
+.ui-sortable {cursor: move;}
 
 #prioritized-versions ol { padding-left: 35px; }
 #unprioritized-versions ul { list-style: none; padding-left: 15px;}

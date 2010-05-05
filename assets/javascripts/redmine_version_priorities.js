@@ -3,6 +3,10 @@ jQuery(function($) {
   $("#ajax-indicator").ajaxStop(function(){ $(this).hide();  });
 
   attachSortables = function() {
+    if (window.admin != true) {
+      return false;
+    }
+    
     $('#prioritized-versions ol').sortable({
       cancel: 'a',
       connectWith: ["#unprioritized-versions ul"],
