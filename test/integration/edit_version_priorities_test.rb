@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EditVersionPrioritiesViaJavascriptTest < ActionController::IntegrationTest
+class EditVersionPrioritiesTest < ActionController::IntegrationTest
   context "as a logged in user" do
     setup do
       @user = login_as_user
