@@ -2,10 +2,11 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_version_priorities do
   name 'Version Priorities'
-  url 'https://projects.littlestreamsoftware.com/projects/redmine-kanban'
+  author 'Eric Davis'
+  url 'https://projects.littlestreamsoftware.com/projects/version-priorities'
   author_url 'http://www.littlestreamsoftware.com'
   description 'Allows versions to be prioritized'
-  version '0.1.'
+  version '0.1.0'
 
   requires_redmine :version_or_higher => '0.9.0'
 

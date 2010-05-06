@@ -1,10 +1,11 @@
 = Redmine Version Priorities
 
-A Redmine plugin to pritorize versions in order to help users make a decision on which issues need to be worked on next.
+A Redmine plugin to prioritize versions in order to help users make a decision on which issues need to be worked on next.
 
 == Features
 
-TODO: fill in features
+* Prioritize versions across all of Redmine, using a drag and drop control panel.
+* Sort issues by version priority, so you can easily find what to work on next.
 
 == Getting the plugin
 
@@ -19,7 +20,9 @@ A copy of the plugin can be downloaded from {Little Stream Software}[https://pro
 
 == Usage
 
-TODO: Add usage
+The link to the control panel is located on the top left menu.  Here everyone will be able to see the versions priorities.  Administrators will be able to drag and drop versions in order to change the priorities.
+
+A new column is added to the Issue list.  The column can be added in the Options section or the System settings.  This column can be sorted and will order the versions by priority. Unprioritized versions will show up as "none" here.
 
 == License
 
