@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{redmine_version_priorities}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eric Davis"]
-  s.date = %q{2010-05-06}
+  s.date = %q{2010-05-12}
   s.description = %q{A Redmine plugin to prioritize versions to help users make a decision on which issues need to be worked on next.}
   s.email = %q{edavis@littlestreamsoftware.com}
   s.extra_rdoc_files = [
