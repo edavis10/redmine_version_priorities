@@ -12,6 +12,8 @@ module RedmineVersionPriorities
           named_scope :prioritized, :conditions => ["priority != 0 AND priority IS NOT NULL"], :order => 'priority ASC'
           named_scope :unprioritized, :conditions => ["priority = 0 OR priority IS NULL"]
 
+          named_scope :not_closed, :conditions => ["#{Version.table_name}.status != ?", 'closed']
+
           private
 
           # Override acts_as_list to allow nil priorities

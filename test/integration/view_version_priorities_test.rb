@@ -28,8 +28,9 @@ class ViewVersionPrioritiesTest < ActionController::IntegrationTest
     @user = login_as_user
     @project1 = Project.generate!
     @project2 = Project.generate!
-    @version1 = Version.generate!(:project => @project1)
-    @version2 = Version.generate!(:project => @project2)
+    @version1 = Version.generate!(:project => @project1, :description => 'Open')
+    @version2 = Version.generate!(:project => @project2, :description => 'Locked', :status => 'locked')
+    @closed_version = Version.generate!(:project => @project2, :description => 'Closed', :status => 'closed')
     @role = Role.generate!(:permissions => [:view_issues])
     Member.generate!(:principal => @user, :roles => [@role], :project => @project1)
     Member.generate!(:principal => @user, :roles => [@role], :project => @project2)
@@ -38,14 +39,20 @@ class ViewVersionPrioritiesTest < ActionController::IntegrationTest
 
     assert_select "#unprioritized-versions" do
       assert_select "li" do
-        assert_select "a", :text => /#{@version1.name}/
+        assert_select "a", :text => /#{@version1.reload.name}/
         assert_select "span", :text => /#{@version1.description}/
       end
 
       assert_select "li" do
-        assert_select "a", :text => /#{@version2.name}/
+        assert_select "a", :text => /#{@version2.reload.name}/
         assert_select "span", :text => /#{@version2.description}/
       end
+
+      assert_select "li" do
+        assert_select "a", :text => /#{@closed_version.reload.name}/, :count => 0
+        assert_select "span", :text => /#{@closed_version.description}/, :count => 0
+      end
+
     end
     
   end
@@ -55,7 +62,7 @@ class ViewVersionPrioritiesTest < ActionController::IntegrationTest
     @project1 = Project.generate!
     @project2 = Project.generate!
     @version1 = Version.generate!(:project => @project1, :priority => 1)
-    @version2 = Version.generate!(:project => @project2, :priority => 2)
+    @version2 = Version.generate!(:project => @project2, :priority => 2, :status => 'locked')
     @role = Role.generate!(:permissions => [:view_issues])
     Member.generate!(:principal => @user, :roles => [@role], :project => @project1)
     Member.generate!(:principal => @user, :roles => [@role], :project => @project2)
