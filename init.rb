@@ -6,7 +6,7 @@ Redmine::Plugin.register :redmine_version_priorities do
   url 'https://projects.littlestreamsoftware.com/projects/version-priorities'
   author_url 'http://www.littlestreamsoftware.com'
   description 'Allows versions to be prioritized'
-  version '0.1.0'
+  version '0.1.1'
 
   requires_redmine :version_or_higher => '0.9.0'
 
