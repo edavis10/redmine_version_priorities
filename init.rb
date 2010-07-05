@@ -20,6 +20,9 @@ Redmine::Plugin.register :redmine_version_priorities do
 
   permission(:view_version_priorities, {:version_priorities => [:show]}, :public => true)
 
+  settings(:partial => 'settings/version_priorities',
+           :default => {'restrictions' => 'view_issues'})
+
 end
 
 require 'dispatcher'

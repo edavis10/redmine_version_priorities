@@ -1,0 +1,15 @@
+<fieldset>
+  <%= content_tag(:legend, l(:version_priorities_text_settings)) %>
+
+  <p>
+    <%= content_tag(:label, l(:version_priorities_label_restrictions)) %>
+
+    <%= select_tag("settings[restrictions]", 
+                   options_for_select(
+                               [
+                                [l(:text_view_issues_permission), 'view_issues'],
+                                [l(:label_none), 'none']
+                               ],
+                   @settings['restrictions'])) %>
+  </p>
+</fieldset>

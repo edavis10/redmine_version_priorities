@@ -3,3 +3,7 @@ en:
   version_priorities_text_prioritized_versions: "Prioritized Versions"
   version_priorities_text_unprioritized_versions: "Unprioritized Versions"
   field_fixed_version_priority: "Version priority"
+  version_priorities_text_settings: "Configure which permissions should be used on the Version Priorities screen."
+  version_priorities_label_restrictions: "Restrictions"
+  text_view_issues_permission: "View issues permission"
+  
