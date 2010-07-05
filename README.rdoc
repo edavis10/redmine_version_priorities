@@ -24,6 +24,10 @@ The link to the control panel is located on the top left menu.  Here everyone wi
 
 A new column is added to the Issue list.  The column can be added in the Options section or the System settings.  This column can be sorted and will order the versions by priority. Unprioritized versions will show up as "none" here.
 
+=== Permissions
+
+By default the plugin will only list Versions that are visible to the current user, based on the 'view_issues' permission.  To remove this restriction, change the setting in the plugin's control panel (Administration > Plugins > Configure).
+
 == License
 
 This plugin is licensed under the GNU GPL v2.  See COPYRIGHT.txt and GPL.txt for details.

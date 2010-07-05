@@ -24,6 +24,22 @@ module RedmineVersionPriorities
       end
 
       module ClassMethods
+        def by_prioritized
+          if priorities_restricted_by_view_issues?
+            Version.visible.not_closed.prioritized
+          else
+            Version.not_closed.prioritized
+          end
+        end
+
+        def by_unprioritized
+          if priorities_restricted_by_view_issues?
+            Version.visible.not_closed.unprioritized
+          else
+            Version.not_closed.unprioritized
+          end
+        end
+        
         def reprioritize(order)
           ordered_ids = order.collect(&:to_i) if order.present?
           ordered_ids ||= []
@@ -42,7 +58,13 @@ module RedmineVersionPriorities
           end
 
         end
-        
+
+        def priorities_restricted_by_view_issues?
+          return true unless Setting['plugin_redmine_version_priorities'].present?
+          return true unless Setting['plugin_redmine_version_priorities']['restrictions'].present?
+          
+          return Setting['plugin_redmine_version_priorities']['restrictions'] == 'view_issues'
+        end
       end
 
       module InstanceMethods

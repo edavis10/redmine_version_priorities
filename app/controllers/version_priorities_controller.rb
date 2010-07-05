@@ -5,15 +5,15 @@ class VersionPrioritiesController < ApplicationController
   before_filter :require_admin, :only => :update
 
   def show
-    @prioritized_versions = Version.visible.not_closed.prioritized
-    @unprioritized_versions = Version.visible.not_closed.unprioritized
+    @prioritized_versions = Version.by_prioritized
+    @unprioritized_versions = Version.by_unprioritized
   end
 
   def update
     Version.reprioritize(params[:version])
     
-    @prioritized_versions = Version.visible.not_closed.prioritized
-    @unprioritized_versions = Version.visible.not_closed.unprioritized
+    @prioritized_versions = Version.by_prioritized
+    @unprioritized_versions = Version.by_unprioritized
 
     respond_to do |format|
       format.html { redirect_to version_priorities_path }
