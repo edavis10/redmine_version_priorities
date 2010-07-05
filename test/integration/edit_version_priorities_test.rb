@@ -6,9 +6,12 @@ class EditVersionPrioritiesTest < ActionController::IntegrationTest
       @user = login_as_user
     end
 
-    should_be_unauthorized("as a logged in user") {
-      put "/version_priorities.js"
-    }
+    context "updating the priorities" do
+      should "respond with unauthorized" do
+        put "/version_priorities.js"
+        assert_response 403
+      end
+    end
   end
 
   context "as an administrator" do
